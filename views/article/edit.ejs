@@ -38,6 +38,8 @@
                     data: $('#form').serialize(),
                     dataType: "json",
                     success: function(result) {
+                        console.log(result);
+
                         if (result.status !== 200) return alert('修改文章失败')
                         location.href = '/article/info/<%= article.id %>'
                     }

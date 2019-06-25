@@ -2,11 +2,16 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/article/add', (req, res) => {
-    res.render('article/add.ejs', {
-        user: req.session.user,
-        isLogin: req.session.isLogin
-    });
-})
+const ctrl = require('../controller/article')
+
+router.get('/article/add', ctrl.showAdd)
+
+router.post('/article/add', ctrl.Addarticle)
+
+router.get('/article/info/:id', ctrl.showArticlePage)
+
+router.get('/article/edit/:id', ctrl.showEditPage)
+
+router.post('/article/edit', ctrl.UpdateArticle)
 
 module.exports = router;
