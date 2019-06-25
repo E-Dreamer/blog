@@ -3,9 +3,14 @@
     <div class="container">
         <h1 class='text-center'>
             <%= article.title %>
-                <a href="" class="btn btn-info pull-right">编辑</a>
-
+                <% if(isLogin && user.id === article.authorId)  {%>
+                    <a href="/article/edit/<%= article.id %>" class="btn btn-info pull-right">编辑</a>
+                    <% } %>
         </h1>
+
+        <div>
+            <%- article.content %>
+        </div>
     </div>
 
     <%- include('../layout/footer.ejs')%>
