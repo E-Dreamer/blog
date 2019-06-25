@@ -56,13 +56,30 @@ const log = (req, res) => {
         //这是数据错误
         if (result.length !== 1) return res.send({ msg: '用户登录失败', status: 502 })
 
+        //把 登录成功之后的用户信息 挂在到session上
+        // console.log(result);//result中就是用户所有的信息
+        req.session.user = result[0];
+        //把 用户登录成功之后的结果 挂在到session 上
+        req.session.isLogin = true;
+        // console.log(req.session);    
         res.send({ status: 200, msg: "登入成功" });
     })
+}
+
+//注销
+const logout = (req, res) => {
+    req.session.destroy(function(err) {
+        if (err) throw err;
+        console.log('用户退出成功！');
+        // 实现服务器端的跳转，这个对比于 客户端跳转
+        res.redirect('/');
+    });
 }
 
 module.exports = {
     showRegisterPage,
     showLoginPage,
     reg,
-    log
+    log,
+    logout
 }

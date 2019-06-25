@@ -3,7 +3,17 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
+//导入session
+const session = require('express-session');
+
 const bodyParser = require('body-parser');
+
+//只要注册了session中间件 那么今后访问req这个对象 必然能访问到req.session
+app.use(session({
+    secret: '这是加密的密钥',
+    resave: false,
+    saveUninitialized: false
+}));
 
 // 设置 默认采用的模板引擎名称
 app.set('view engine', 'ejs');

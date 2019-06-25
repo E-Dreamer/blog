@@ -12,4 +12,6 @@ router.post('/register', ctrl.reg)
 
 router.post('/login', ctrl.log)
 
+router.get('/logout', ctrl.logout)
+
 module.exports = router;
